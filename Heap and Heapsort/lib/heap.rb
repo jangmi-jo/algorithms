@@ -38,10 +38,12 @@ class BinaryMinHeap
   end
 
   def self.heapify_down(array, parent_idx, len = array.length, &prc)
-    prc ||= proc { |a, b| a <=> b }
     children = child_indices(len, parent_idx)
     return array if children.empty?
+    prc ||= proc { |a, b| a <=> b }
     idx = children.sort { |a, b| prc.call(array[a], array[b]) }[0]
+    # spaceship operator's 1 means out of order
+    # -1 means in order
     if prc.call(array[parent_idx], array[idx]) == 1
       array[parent_idx], array[idx] = array[idx], array[parent_idx]
       heapify_down(array, idx, len, &prc)
@@ -52,8 +54,8 @@ class BinaryMinHeap
 
   def self.heapify_up(array, child_idx, len = array.length, &prc)
     return array if child_idx.zero?
-    prc ||= proc { |a, b| a <=> b }
     idx = parent_index(child_idx)
+    prc ||= proc { |a, b| a <=> b }
     if prc.call(array[idx], array[child_idx]) == 1
       array[idx], array[child_idx] = array[child_idx], array[idx]
       heapify_up(array, idx, len, &prc)
