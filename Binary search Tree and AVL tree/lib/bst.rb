@@ -47,7 +47,7 @@ class BinarySearchTree
   end
 
   def delete(value)
-
+    BinarySearchTree.delete!(@root, value)
   end
 
   def self.insert!(node, value)
@@ -117,6 +117,24 @@ class BinarySearchTree
 
   def self.delete!(node, value)
     return nil if node.nil?
-    
+    if value == node.value
+      if node.left.nil? && node.right.nil?
+        # no children
+        nil
+      elsif node.left.nil?
+        # only right child
+        node.right
+      elsif node.right.nil?
+        # only left child
+        node.left
+      else
+        # both children
+        delete_min!(node.right)
+      end
+    elsif value <= node.value
+      node.left = delete!(node.left, value)
+    else
+      node.right = delete!(node.right, value)
+    end
   end
 end
