@@ -87,7 +87,6 @@ class LinkedList
     end
   end
 
-  # uncomment when you have `each` working and `Enumerable` included
   def to_s
     inject([]) { |acc, link| acc << "[#{link.key}, #{link.val}]" }.join(", ")
   end

@@ -89,7 +89,6 @@ class ResizingIntSet
   private
 
   def [](num)
-    # optional but useful; return the bucket corresponding to `num`
     @store[num % num_buckets]
   end
 
@@ -99,8 +98,6 @@ class ResizingIntSet
 
   def resize!
     new_int_set = ResizingIntSet.new(num_buckets * 2)
-    # I could use flatten but that seems like really ruby thing..
-    # Also, I had to expose @store with attr_reader. Is that the best?
     num_buckets.times do |i|
       @store[i].each do |n|
         new_int_set.insert(n)

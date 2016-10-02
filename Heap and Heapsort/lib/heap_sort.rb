@@ -6,7 +6,7 @@ class Array
     prc ||= proc { |a, b| a <=> b }
     # build the heap with original array
     (size - 1).downto(0).each do |i|
-      # do the opposite way sort to optimize time complexsity
+      # do the opposite way sort to optimize time complexity
       BinaryMinHeap.heapify_up(self, i, size) { |a, b| -prc.call(a, b) }
     end
     # set the boundary
