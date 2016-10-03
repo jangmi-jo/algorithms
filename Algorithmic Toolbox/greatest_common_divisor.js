@@ -13,5 +13,10 @@ const greatestCommonDivisor = (a, b) => {
   return greatestCommonDivisor(a % b, b);
 };
 
+// console.log(greatestCommonDivisor(3918848, 1653264));
 
-console.log(greatestCommonDivisor(3918848, 1653264));
+const leastCommonMultiple = (a, b) => {
+  return a * b / greatestCommonDivisor(a, b);
+};
+
+console.log(leastCommonMultiple(28851538, 1183019));
