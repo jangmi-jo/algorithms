@@ -159,3 +159,5 @@ class DoublyLinkedList {
     return newLink;
   }
 }
+
+module.exports = DoublyLinkedList;
