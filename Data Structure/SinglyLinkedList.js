@@ -47,12 +47,14 @@ class SinglyLinkedList {
   topFront() {
     // return the first link
     // O(1)
+    this.checkEmpty();
     return this.head.next;
   }
 
   popFront() {
     // remove first link
     // O(1)
+    this.checkEmpty();
     this.head.next = this.head.next.next;
     this.length -= 1;
   }
@@ -71,8 +73,9 @@ class SinglyLinkedList {
   topBack() {
     // return last link
     // Since we don't have prev attribute,
-    // we can't react to the last one easily
+    // we can't reach to the last one easily
     // O(n)
+    this.checkEmpty();
     return this.forEach((el) => {
       if (el.next === this.tail) {
         return el;
@@ -83,6 +86,7 @@ class SinglyLinkedList {
   popBack() {
     // remove last link
     // O(n)
+    this.checkEmpty();
     this.forEach((el) => {
       if (el.next === this.tail) {
         el.value = undefined;
@@ -101,6 +105,7 @@ class SinglyLinkedList {
     this.forEach((el) => {
       if (el.value === key) {
         exist = true;
+        return exist;
       }
     });
     return exist;
@@ -112,9 +117,16 @@ class SinglyLinkedList {
     this.forEach((el) => {
       if (el.next.value === key) {
         el.next = el.next.next;
-        return;
+        this.length -= 1;
+        return true;
       }
     });
+  }
+
+  checkEmpty() {
+    if (this.empty()) {
+      throw "The list is empty";
+    }
   }
 
   empty() {
@@ -133,6 +145,7 @@ class SinglyLinkedList {
         return true;
       }
     });
+    this.length += 1;
     newLink.next = link;
   }
 
@@ -142,5 +155,6 @@ class SinglyLinkedList {
     let newLink = new Link(key);
     newLink.next = link.next;
     link.next = newLink;
+    this.length += 1;
   }
 }
