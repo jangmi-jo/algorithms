@@ -1,3 +1,4 @@
+
 class Node {
   constructor(key) {
     this.key = key;
@@ -25,7 +26,7 @@ class BinarySearchTree {
   }
 
   static min(node) {
-    
+
   }
 
   static max(node) {
@@ -61,7 +62,7 @@ class BinarySearchTree {
   }
 }
 
-let root = new Node(7);
+module.exports = {BinarySearchTree, Node };
 
 // insert, find, inorder, preorder, postorder,
 // height, min, max,
