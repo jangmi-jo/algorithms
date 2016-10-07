@@ -14,15 +14,54 @@ class BinarySearchTree {
   insert(key) {
     let newNode = new Node(key);
     if (this.root) {
+      BinarySearchTree.insert(this.root, key);
     } else {
       this.root = newNode;
     }
   }
+
+  static insert(node, key) {
+    console.log("class method");
+  }
+
+  static min(node) {
+    
+  }
+
+  static max(node) {
+
+  }
+
+  static find(node, key) {
+
+  }
+
+  static height(node) {
+
+  }
+
+  static deleteMin(node) {
+
+  }
+
+  static deleteNode(node) {
+
+  }
+
+  static inorder(node) {
+
+  }
+
+  static postorder(node) {
+
+  }
+
+  static preorder(node) {
+
+  }
 }
 
-let bst = new BinarySearchTree();
-
-
+let root = new Node(7);
 
 // insert, find, inorder, preorder, postorder,
 // height, min, max,
