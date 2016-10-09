@@ -13,20 +13,30 @@ class BinarySearchTree {
   }
 
   insert(key) {
-    let newNode = new Node(key);
     if (this.root) {
       BinarySearchTree.insert(this.root, key);
     } else {
+      let newNode = new Node(key);
       this.root = newNode;
     }
   }
 
   static insert(node, key) {
-    console.log("class method");
+    if (!node) {
+      let newNode = new Node(key);
+      return newNode;
+    }
+    if (key < node.key) {
+      node.left = BinarySearchTree.insert(node.left, key);
+      return node;
+    } else {
+      node.right = BinarySearchTree.insert(node.right, key);
+      return node;
+    }
   }
 
   static min(node) {
-
+    
   }
 
   static max(node) {
@@ -62,7 +72,7 @@ class BinarySearchTree {
   }
 }
 
-module.exports = {BinarySearchTree, Node };
+module.exports = { BinarySearchTree, Node };
 
 // insert, find, inorder, preorder, postorder,
 // height, min, max,
