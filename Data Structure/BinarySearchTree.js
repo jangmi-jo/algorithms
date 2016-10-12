@@ -24,6 +24,12 @@ class BinarySearchTree {
     return BinarySearchTree.postorder(this.root);
   }
 
+  deleteNode(key) {
+    // set the root to the return value of the class method
+    // for deleting root as well when requested
+    this.root = BinarySearchTree.deleteNode(this.root, key);
+  }
+
   deleteMin() {
     this.root = BinarySearchTree.deleteMin(this.root);
   }
@@ -61,11 +67,10 @@ class BinarySearchTree {
     }
     if (key < node.key) {
       node.left = BinarySearchTree.insert(node.left, key);
-      return node;
     } else {
       node.right = BinarySearchTree.insert(node.right, key);
-      return node;
     }
+    return node;
   }
 
   static min(node) {
@@ -121,21 +126,26 @@ class BinarySearchTree {
   }
 
   static deleteNode(node, key) {
-    // if (!node) { return undefined; }
-    // if (node.key === key) {
-    //   return undefined;
-    // }
-    //
-    // if (node.left && node.right) {
-    //   node.right = BinarySearchTree.deleteMin(node.right);
-    //   return node;
-    // } else if (node.left) {
-    //   return node.left;
-    // } else if (node.right) {
-    //   return node.right;
-    // } else {
-    //   return undefined;
-    // }
+    if (!node) { return undefined; }
+    if (node.key === key) {
+      if (node.left && node.right) {
+        let rightMin = BinarySearchTree.min(node.right);
+        rightMin.right = BinarySearchTree.deleteMin(node.right);
+        rightMin.left = node.left;
+        return rightMin;
+      } else if (node.left) {
+        return node.left;
+      } else if (node.right) {
+        return node.right;
+      } else {
+        return undefined;
+      }
+    } else if (key < node.key) {
+      node.left = BinarySearchTree.deleteNode(node.left, key);
+    } else {
+      node.right = BinarySearchTree.deleteNode(node.right, key);
+    }
+    return node;
   }
 
   static inorder(node) {
