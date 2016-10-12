@@ -1,45 +1,45 @@
 const maxRegion = (n, m, grid) => {
+  grid = [].concat(...grid);
   let max = 0;
-  console.log(getRegion(n, m, 0, 0, grid));
-  // for (let i=0; i<n; i++) {
-  //   for (let j=0; j<m; j++) {
-  //     if (grid[i][j] === 1) {
-  //       let newRegion = getRegion(n, m, i, j, grid);
-  //       if (newRegion.length > max) {
-  //         max = newRegion.length;
-  //       }
-  //     }
-  //   }
-  // }
+  for (let i=0; i<grid.length; i++) {
+    if (grid[i] === 1) {
+      let newRegion = getRegion(n, m, i, grid);
+      if (max < newRegion.length) { max = newRegion.length; }
+    }
+  }
+  return max;
 };
 
-const getRegion = (n, m, i, j, grid) => {
-  let filledNeighbors = neighbors(n, m, i, j, grid);
-  let region = [[i, j]];
-  if (filledNeighbors.length) {
-    grid[i][j] = 'X';
-    filledNeighbors.forEach((pos) => {
-      console.log(grid);
-      region = region.concat(getRegion(n, m, pos[0], pos[1], grid));
+const getRegion = (n, m, i, grid) => {
+  let region = [i];
+  grid[i] = 'X';
+  let idx = 0;
+  while (idx < Object.keys(region).length) {
+    neighbors(n, m, region[idx], grid).forEach((neighbor) => {
+      grid[neighbor] = 'X';
+      region.push(neighbor);
     });
+    idx++;
   }
   return region;
 };
 
-const neighbors = (n, m, i, j, grid) => {
-  let neighborPos = [[i-1, j-1], [i-1, j], [i-1, j+1],
-                     [i, j-1], [i, j+1],
-                     [i+1, j-1], [i+1, j], [i+1, j+1]];
-  neighborPos = neighborPos.filter((pos) => {
-    return (pos[0] >= 0 && pos[0] < n &&
-            pos[1] >= 0 && pos[1] < m && grid[pos[0]][pos[1]]);
+const neighbors = (n, m, i, grid) => {
+  let left = [i - 1 - m, i - 1, i - 1 + m];
+  let right = [i + 1 - m, i + 1, i + 1 + m];
+  let all = [i - m, i + m];
+  if (i % m !== 0) { all = all.concat(left); }
+  if (i % m !== m - 1) { all = all.concat(right); }
+  all = all.filter((idx) => {
+    return idx >= 0 && idx < grid.length && grid[idx] === 1;
   });
-  return neighborPos;
+  return all;
 };
 
-let grid = `1 1 0 0
-0 1 1 0
-0 0 1 0
-1 0 0 0`.split("\n").map((line) => line.split(" ").map(Number));
+let grid = `1 1 0 0 0
+0 1 1 0 0
+0 0 1 0 1
+1 0 0 0 1
+0 1 0 1 1`.split("\n").map((line) => line.split(" ").map(Number));
 
-maxRegion(4, 4, grid);
+console.log(maxRegion(5, 5, grid));
