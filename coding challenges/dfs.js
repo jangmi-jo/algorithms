@@ -36,10 +36,9 @@ const neighbors = (n, m, i, grid) => {
   return all;
 };
 
-let grid = `1 1 0 0 0
-0 1 1 0 0
-0 0 1 0 1
-1 0 0 0 1
-0 1 0 1 1`.split("\n").map((line) => line.split(" ").map(Number));
+let grid = `1 1 0 0
+0 1 1 0
+0 0 1 0
+1 0 0 0`.split("\n").map((line) => line.split(" ").map(Number));
 
 console.log(maxRegion(5, 5, grid));
