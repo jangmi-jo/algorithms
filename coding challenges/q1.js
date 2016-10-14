@@ -6,6 +6,11 @@
 //
 // You are given N, K and L.
 
+
+
+
+
+
 // Given a M*N board with characters and a dictionary with words. From any position of the board, you can go for 8 directions. Find all the word which can be formed by starting at one position on the board and going in stating way.
 
 // Given a library function X, please implement it. What advantages does this library function provide versus this other method? What are some runtime concerns of your implementation?
