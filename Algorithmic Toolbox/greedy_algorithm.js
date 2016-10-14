@@ -93,7 +93,19 @@ const collectSignature = (arr) => {
 // console.log(collectSignature(t3));
 
 const maximizePrize = (n) => {
-
+  let prizes = [];
+  let i = 1;
+  while (n) {
+    if (i+1 <= n - i) {
+      n -= i;
+      prizes.push(i);
+      i++;
+    } else {
+      prizes.push(n);
+      n = 0;
+    }
+  }
+  return prizes;
 };
 
-console.log(maximizePrize(6));
+// console.log(maximizePrize(2));
