@@ -1,6 +1,6 @@
 const inputHelper = (input) => {
   return input.split("\n").map((line) => line.split(" ").map(Number));
-}
+};
 
 let denominations = [10, 5, 1];
 
@@ -109,3 +109,14 @@ const maximizePrize = (n) => {
 };
 
 // console.log(maximizePrize(2));
+
+const maximizeSalary = (digits) => {
+  // time: O(nlogn)
+  // space: O(1)
+  digits.sort((a, b) => Number(b) - Number(a));
+  digits.sort((a, b) => a.length - b.length);
+  digits.sort((a, b) => b[0] - a[0]);
+  return digits.join("");
+};
+//
+// console.log(maximizeSalary('21 2'.split(" ")));
