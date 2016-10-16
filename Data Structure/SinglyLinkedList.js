@@ -158,3 +158,5 @@ class SinglyLinkedList {
     this.length += 1;
   }
 }
+
+module.exports = { SinglyLinkedList, Link };
