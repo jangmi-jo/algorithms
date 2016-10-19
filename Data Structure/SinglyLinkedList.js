@@ -24,6 +24,13 @@ class SinglyLinkedList {
     }
   }
 
+  append(link) {
+    this.topBack().next = link;
+    link.next = new Link();
+    this.tail = link.next;
+    this.length++;
+  }
+
   display() {
     let list = [];
     this.forEach((link) => {
@@ -55,8 +62,10 @@ class SinglyLinkedList {
     // remove first link
     // O(1)
     this.checkEmpty();
+    let returnValue = this.head.next.value;
     this.head.next = this.head.next.next;
     this.length -= 1;
+    return returnValue;
   }
 
   pushBack(key) {
