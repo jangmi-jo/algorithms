@@ -1,7 +1,7 @@
 // intersection
 // return interesecting node
 
-const { SinglyLinkedList, Link } = require('./../../Data Structure/SinglyLinkedList.js');
+const { SinglyLinkedList, Link } = require('./../../../Data Structure/SinglyLinkedList.js');
 
 
 const getLength = (link) => {
