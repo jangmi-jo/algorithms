@@ -24,16 +24,5 @@ class Edge {
     this.toNode = undefined;
   }
 }
-let one = new Node(1);
-let two = new Node(2);
-let three = new Node(3);
-let four = new Node(4);
-let five = new Node(5);
 
-new Edge(one, two);
-new Edge(three, two);
-new Edge(two, four);
-new Edge(two, five);
-new Edge(five, one);
-
-console.log(one);
+module.exports = { Node, Edge };
