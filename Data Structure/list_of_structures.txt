@@ -1,10 +1,4 @@
-// - Implement all of these Data structures in a language of your choice(I chose Ruby):
-// Linked List
-// Dynamic array, implemented with a ring buffer (use a statically sized array underneath the hood)
-// Hash set
-// Hash map (with chaining)
-// Binary heap (without decrease-key; know that Fibonacci heaps exist and know their guarantees)
-// Binary search tree (doesn’t need to be self-balancing; know that self-balancing trees exist and know their guarantees)
+
 // Prefix tree (a.k.a. trie)
 // Suffix tree (don’t worry about compression, just build a dumb version; know that Ukkonen’s algorithm exists and learn its guarantees)
 // An object-oriented adjacency list for graphs
