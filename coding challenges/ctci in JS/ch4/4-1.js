@@ -3,7 +3,7 @@
 // directed graph
 // check if there is route between two nodes
 
-const { Node, Edge } = require('./Graph.js');
+const { Node, Edge } = require('../../../Data Structure/Graph.js');
 
 let one = new Node(1);
 let two = new Node(2);

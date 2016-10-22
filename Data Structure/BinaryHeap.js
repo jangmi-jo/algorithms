@@ -27,9 +27,9 @@ class BinaryHeap {
     return parentIdx >= 0 && parentIdx < store.length ? parentIdx : undefined;
   }
 
-  static children(i, store) {
+  static children(i, store, lastIdx = store.length - 1) {
     let idxs = [2 * i + 1, 2 * i + 2];
-    idxs = idxs.filter((idx) => idx >= 0 && idx < store.length);
+    idxs = idxs.filter((idx) => idx >= 0 && idx <= lastIdx);
     return idxs;
   }
 
@@ -45,8 +45,9 @@ class BinaryHeap {
     }
   }
 
-  static heapifyDown(i, store, comparator) {
-    let idxs = BinaryHeap.children(i, store);
+  static heapifyDown(i, store, comparator, lastIdx) {
+    // added size variable to implement heap sort
+    let idxs = BinaryHeap.children(i, store, lastIdx);
     let childHash = {};
     idxs.forEach((idx) => {
       childHash[store[idx]] = idx;
@@ -58,7 +59,7 @@ class BinaryHeap {
         let temp = store[i];
         store[i] = store[childHash[children[0]]];
         store[childHash[children[0]]] = temp;
-        BinaryHeap.heapifyDown(childHash[children[0]], store, comparator);
+        BinaryHeap.heapifyDown(childHash[children[0]], store, comparator, lastIdx);
       }
     }
   }
