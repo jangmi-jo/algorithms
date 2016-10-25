@@ -1,4 +1,4 @@
-const quickSortNotInPlace = (arr) => {
+const quickSort = (arr, comparator = (a, b) => a - b) => {
   // time: O(nlogn)
   // space: temporary arrays O(n)
   // This version is stable
@@ -10,27 +10,27 @@ const quickSortNotInPlace = (arr) => {
   let middle = [];
   let right = [];
   arr.forEach((n) => {
-    if (n === pivot) {
+    if (comparator(n, pivot) === 0) {
       middle.push(n);
-    } else if (n < pivot) {
+    } else if (comparator(n, pivot) < 0) {
       left.push(n);
     } else {
       right.push(n);
     }
   });
-  return quickSortNotInPlace(left).concat(middle).concat(quickSortNotInPlace(right));
+  return quickSort(left, comparator).concat(middle).concat(quickSort(right, comparator));
 };
 
 
-const quickSortInPlace = (arr, low = 0, high = arr.length - 1) => {
+const quickSortInPlace = (arr, low = 0, high = arr.length - 1, comparator = (a, b) => a - b) => {
   // time: O(nlogn)
   // space: O(logn) for callstack
   if (low < high) {
     // partition returns the pivot index
     // then we call the quickSortInPlace to the rest of the arr
-    let pivotIdx = partition(arr, low, high);
-    quickSortInPlace(arr, low, pivotIdx - 1);
-    quickSortInPlace(arr, pivotIdx + 1, high);
+    let pivotIdx = partition(arr, low, high, comparator);
+    quickSortInPlace(arr, low, pivotIdx - 1, comparator);
+    quickSortInPlace(arr, pivotIdx + 1, high, comparator);
   }
 };
 
@@ -40,7 +40,7 @@ const swap = (arr, i, j) => {
   arr[j] = temp;
 };
 
-const partition = (arr, low, high) => {
+const partition = (arr, low, high, comparator) => {
   // partition the area and returns the pivot index
   let len = high - low + 1;
   let randomIdx = Math.floor(Math.random() * len) + low;
@@ -49,7 +49,7 @@ const partition = (arr, low, high) => {
   let pivotIdx = low;
   low++;
   while (low <= high) {
-    if (arr[pivotIdx] >= arr[low]) {
+    if (comparator(arr[pivotIdx], arr[low]) >= 0) {
       // if current num is smaller or equal to pivot,
       // swap that to right next to pivot
       // Then swap with pivot and increment pivot index

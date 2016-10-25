@@ -1,5 +1,4 @@
 
-// Randomized quicksort (pay extra attention to the partition subroutine, as it’s useful in a lot of places)
 // Mergesort
 // Breadth-first search in a graph
 // Depth-first search in a graph (augment it to detect cycles)
