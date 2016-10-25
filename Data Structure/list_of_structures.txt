@@ -1,5 +1,4 @@
 
-// Mergesort
 // Breadth-first search in a graph
 // Depth-first search in a graph (augment it to detect cycles)
 // Tree traversals (pre-order, in-order, post-order)
