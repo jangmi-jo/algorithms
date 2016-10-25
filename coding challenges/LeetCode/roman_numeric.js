@@ -9,6 +9,8 @@ const romanHash = {
 };
 
 const romanToInt = (s) => {
+  // rule: if the next symbol is bigger than this symbol,
+  // subtract this symbol
   let res = 0;
   for (let i=0; i<s.length; i++) {
     if (i === s.length - 1 || romanHash[s[i]] >= romanHash[s[i+1]]) {

@@ -1,7 +1,4 @@
 
-// Suffix tree (don’t worry about compression, just build a dumb version; know that Ukkonen’s algorithm exists and learn its guarantees)
-// - Implement all of these algorithms in a language of your choice:
-// Binary search (implement it both iteratively and recursively)
 // Randomized quicksort (pay extra attention to the partition subroutine, as it’s useful in a lot of places)
 // Mergesort
 // Breadth-first search in a graph
