@@ -38,7 +38,8 @@ class SinglyLinkedList {
         list.push(link.value);
       }
     });
-    console.log(list);
+    // console.log(list);
+    return list;
   }
 
   pushFront(key) {
