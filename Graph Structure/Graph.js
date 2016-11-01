@@ -14,10 +14,12 @@ class AdjacencyList {
   }
 
   relatedVertex(node) {
+    // returning the SinglyLinkedList
     return this.store[this.indexMap.get(node)];
   }
 
   removeEdge(nodes) {
+    // O(n)
     let [a, b] = nodes;
     let aIdx = this.indexMap.get(a);
     let bIdx = this.indexMap.get(b);
@@ -29,6 +31,7 @@ class AdjacencyList {
   }
 
   insertEdge(nodes, w = 1) {
+    // time: O(1)
     let [a, b] = nodes;
     let aIdx = this.indexMap.get(a);
     let bIdx = this.indexMap.get(b);
@@ -59,30 +62,13 @@ class AdjacencyList {
   }
 }
 
-let a = new Vertex('a');
-let b = new Vertex('b');
-let c = new Vertex('c');
-let d = new Vertex('d');
-let list = new AdjacencyList();
-
-list.insertEdge([a, b]);
-list.insertEdge([b, c]);
-list.insertEdge([a, d]);
-list.display();
-
-
 class AdjacencyMatrix {
   // space : O(V**2)
   // time: for all O(1)
-  constructor(vertices) {
+  constructor() {
     this.indexMap = new Map();
     this.store = [];
-    vertices.forEach((v, i) => {
-      this.indexMap.set(v, i);
-      let temp = [];
-      for (let t=0; t<vertices.length; t++) { temp.push(0); }
-      this.store.push(temp);
-    });
+    this.idx = 0;
   }
 
   isRelated(nodes) {
@@ -96,6 +82,9 @@ class AdjacencyMatrix {
     let [a, b] = nodes;
     let aIdx = this.indexMap.get(a);
     let bIdx = this.indexMap.get(b);
+    if (aIdx === undefined || bIdx === undefined) {
+      return;
+    }
     this.store[aIdx][bIdx] = 0;
     this.store[bIdx][aIdx] = 0;
   }
@@ -104,6 +93,34 @@ class AdjacencyMatrix {
     let [a, b] = nodes;
     let aIdx = this.indexMap.get(a);
     let bIdx = this.indexMap.get(b);
+    if (aIdx === undefined) {
+      this.indexMap.set(a, this.idx);
+      let newArr = [];
+      for (let i=0; i<=this.idx; i++) {
+        if (this.store[i] && this.store[i].length <= this.idx) {
+          this.store[i].push(0);
+        }
+        newArr.push(0);
+      }
+      aIdx = this.idx;
+      this.store.push(newArr);
+      this.idx++;
+    }
+
+    if (bIdx === undefined) {
+      this.indexMap.set(b, this.idx);
+      let newArr = [];
+      for (let i=0; i<=this.idx; i++) {
+        if (this.store[i] && this.store[i].length <= this.idx) {
+          this.store[i].push(0);
+        }
+        newArr.push(0);
+      }
+      bIdx = this.idx;
+      this.store.push(newArr);
+      this.idx++;
+    }
+
     this.store[aIdx][bIdx] = w;
     this.store[bIdx][aIdx] = w;
   }
@@ -116,3 +133,5 @@ class AdjacencyMatrix {
     });
   }
 }
+
+module.exports = { Vertex, AdjacencyList, AdjacencyMatrix };
