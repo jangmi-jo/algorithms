@@ -19,5 +19,5 @@ const changes = (n, coins) => {
 };
 
 
-console.log(changes(2, [3, 2, 1]));
+console.log(changes(4, [3, 2, 1]));
 // console.log(changes(10, [2, 5, 3, 6]));

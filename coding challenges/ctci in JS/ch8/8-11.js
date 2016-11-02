@@ -1,4 +1,4 @@
-
+// try store actual ways in set
 const coins = [25, 10, 5, 1];
 let coinHash = new Map();
 
