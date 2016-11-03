@@ -75,7 +75,7 @@ class AdjacencyMatrix {
     let [a, b] = nodes;
     let aIdx = this.indexMap.get(a);
     let bIdx = this.indexMap.get(b);
-    return this.store[aIdx][bIdx] !== 0;
+    return this.store[aIdx][bIdx];
   }
 
   removeEdge(nodes) {

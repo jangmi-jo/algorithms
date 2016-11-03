@@ -49,7 +49,32 @@ const MinimumSpanningTreeWithList = (vertices, edges) => {
 };
 
 const MinimumSpanningTreeWithMatrix = (vertices, edges) => {
+  let len = 0;
+  let list = new AdjacencyMatrix();
+  edges.forEach((edge) => {
+    list.insertEdge([edge[0], edge[1]], edge[2]);
+  });
+  let visited = new Map();
+  let candidates = [[vertices[0], 0]];
+  while (candidates.length) {
+    candidates.sort((a, b) => b[1] - a[1]);
 
+    let nextVisit = candidates.pop();
+    while (visited.get(nextVisit[0]) !== undefined) {
+      nextVisit = candidates.pop();
+    }
+
+    len += nextVisit[1];
+    visited.set(nextVisit[0], true);
+
+    vertices.forEach((v) => {
+      let weight = list.isRelated([nextVisit[0], v]);
+      if (weight !== 0 && visited.get(v) === undefined) {
+        candidates.push([v, weight]);
+      }
+    });
+  }
+  return visited.size === vertices.length ? len : false;
 };
 
 let a = new Vertex('a');
