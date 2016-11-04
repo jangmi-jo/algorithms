@@ -34,12 +34,4 @@ const union = (x, y) => {
   }
 };
 
-let a = makeSet('a');
-let b = makeSet('b');
-let c = makeSet('c');
-let d = makeSet('d');
-union(a, b);
-union(b, c);
-
-console.log(find(a) === find(c));
-console.log(find(a) === find(d));
+module.exports = { makeSet, find, union };
