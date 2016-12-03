@@ -34,8 +34,34 @@ const partition = (arr, i) => {
   }
 };
 
+
+const anotherVersion = (arr, i) => {
+  // time: O(n) where n is the length of arr
+  // space: O(1)
+  let pivot = arr[i];
+  // move all the smaller els to the front
+  let front = 0;
+  for (let j=0; j<arr.length; j++) {
+    if (arr[j] < pivot) {
+      [arr[j], arr[front]] = [arr[front], arr[j]];
+      front++;
+    }
+  }
+
+  // move all the bigger els to the end
+  let end = arr.length - 1;
+  for (let j=arr.length-1; j>=front; j--) {
+    if (arr[j] > pivot) {
+      [arr[j], arr[end]] = [arr[end], arr[j]];
+      end--;
+    }
+  }
+};
+
+
 let arr = [6, 5, 2, 1, 5, 8, 3, 9, 1, 2, 5];
 
-partition(arr, 4);
+// partition(arr, 4);
+anotherVersion(arr, 4);
 
 console.log(arr);
