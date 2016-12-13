@@ -44,6 +44,7 @@ class Trie {
 }
 
 let t = new Trie();
-t.addWord("ATCG");
-t.addWord("GGGT");
-console.log(t.match("AATCGGGTTCAATCGGGGT"));
+t.addWord("AT");
+t.addWord("A");
+t.addWord("AG");
+console.log(t.match("ACATA"));
