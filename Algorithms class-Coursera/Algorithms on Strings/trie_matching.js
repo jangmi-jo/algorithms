@@ -12,22 +12,20 @@ class Trie {
   }
 
   match(text) {
-    // refactor this without res.set(null to root)
     let res = new Map();
-    res.set(null, this.root);
     for (let i=0; i<text.length; i++) {
-      Array.from(res.keys()).forEach((k) => {
-        let v = res.get(k);
-        if (v.last) { return; }
-        let next = v.edges.get(text[i]);
-        if (k === null && next !== undefined) {
-          res.set(i, next);
-        } else if (next !== undefined) {
+      res.forEach((v, k) => {
+        if (res.get(k).last) { return; }
+        let next = res.get(k).edges.get(text[i]);
+        if (next) {
           res.set(k, next);
-        } else if (k !== null) {
+        } else {
           res.delete(k);
         }
       });
+      if (this.root.edges.get(text[i])) {
+        res.set(i, this.root.edges.get(text[i]));
+      }
     }
     res = Array.from(res.keys()).filter((k) => res.get(k).last);
     return res;
