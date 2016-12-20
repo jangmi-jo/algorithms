@@ -11,6 +11,7 @@ Since we can only buy second time after sell the before one,
 */
 
 const buySellStock = (arr) => {
+  // time: O(n), space: O(n)
   const left = [];
   const right = [];
   let leftM = arr[0], rightM = arr[arr.length - 1];
