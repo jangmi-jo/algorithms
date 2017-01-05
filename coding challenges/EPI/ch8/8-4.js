@@ -12,19 +12,32 @@ if there's same node, from then, the length of the rest should be same
 
 */
 
-const overlappingLists = (a, b) => {
-  // DIDN'T implement test case but it should work
-  // time: O(longer length in a and b)
-  // space: O(1)
-  [a, b] = [a, b].sort((x, y) => x.length - y.length);
-  let [aHead, bHead] = [a.head, b.head];
-  for (let i=0; i<b.length - a.length; i++) {
-    bHead = bHead.next;
+
+const getLength = (start, fin) => {
+  // inclusive
+  let len = 1;
+  while (start) {
+    if (start === fin) { return len; }
+    start = start.next;
+    len++;
   }
-  while (aHead && bHead) {
-    if (aHead === bHead) { return aHead; }
-    aHead = aHead.next;
-    bHead = bHead.next;
+};
+
+const cycleFreeOverlappingLists = (a, b) => {
+  // time: O(max(a, b))
+  // space: O(1)
+  a.length = getLength(a);
+  b.length = getLength(b);
+  [a, b] = [a, b].sort((x, y) => x.length - y.length);
+  for (let i=0; i<b.length - a.length; i++) {
+    b = b.next;
+  }
+  while (a && b) {
+    if (a === b) { return a; }
+    a = a.next;
+    b = b.next;
   }
   return false;
 };
+
+module.exports = {cycleFreeOverlappingLists, getLength};

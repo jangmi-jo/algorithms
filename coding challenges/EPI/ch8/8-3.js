@@ -76,4 +76,6 @@ e.next = f;
 f.next = g;
 g.next = c;
 
-console.log(testCyclicity(a));
+// console.log(testCyclicity(a));
+
+module.exports = testCyclicity;
