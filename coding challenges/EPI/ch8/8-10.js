@@ -14,6 +14,8 @@ order them by even index nodes first, then odd index nodes
 const SinglyLinkedList = require('./8-9.js');
 
 const evenOddMerge = (list) => {
+  // time: O(n) where n is the length of list
+  // space: O(1) since I used the links as they were
   if (list.length === 0) { return list; }
   let oddList = new SinglyLinkedList();
   let node = list.head;
