@@ -26,8 +26,13 @@ class SinglyLinkedList {
   }
 
   addVal(val) {
-    this.length++;
     let link = new Link(val);
+    this.append(link);
+  }
+
+  append(link) {
+    this.length++;
+    link.next = undefined;
     if (this.head && this.tail) {
       this.tail.next = link;
       this.tail = link;
@@ -41,7 +46,7 @@ class SinglyLinkedList {
 
   display() {
     let c = this.head;
-    for (let i=0; i<this.length; i++) {
+    while (c) {
       console.log(c.val);
       c = c.next;
     }
@@ -59,16 +64,18 @@ const rightShift = (list, k) => {
   list.tail.next = undefined;
   return list;
 };
+//
+// let n = new SinglyLinkedList();
+// n.addVal('a');
+// n.addVal('b');
+// n.addVal('c');
+// n.addVal('d');
+// n.addVal('e');
+// n.addVal('f');
+// n.addVal('g');
+//
+// rightShift(n, 10);
+//
+// n.display();
 
-let n = new SinglyLinkedList();
-n.addVal('a');
-n.addVal('b');
-n.addVal('c');
-n.addVal('d');
-n.addVal('e');
-n.addVal('f');
-n.addVal('g');
-
-rightShift(n, 10);
-
-n.display();
+module.exports = SinglyLinkedList;
