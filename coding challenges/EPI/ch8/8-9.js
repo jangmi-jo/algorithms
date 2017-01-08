@@ -33,14 +33,12 @@ class SinglyLinkedList {
   append(link) {
     this.length++;
     link.next = undefined;
-    if (this.head && this.tail) {
+    if (this.head) {
       this.tail.next = link;
       this.tail = link;
-    } else if (this.head) {
-      this.tail = link;
-      this.head.next = this.tail;
     } else {
       this.head = link;
+      this.tail = link;
     }
   }
 
@@ -50,6 +48,15 @@ class SinglyLinkedList {
       console.log(c.val);
       c = c.next;
     }
+  }
+
+  static merge(a, b) {
+    if (a.length === 0) { return b; }
+    if (b.length === 0) { return a; }
+    a.tail.next = b.head;
+    a.tail = b.tail;
+    a.length += b.length;
+    return a;
   }
 }
 
