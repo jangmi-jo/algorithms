@@ -6,7 +6,7 @@ class Node {
   }
 }
 
-let a = new Node(314);
+let r = new Node(314);
 let b = new Node(6);
 let c = new Node(271);
 let d = new Node(28);
@@ -23,8 +23,8 @@ let n = new Node(257);
 let o = new Node(271);
 let p = new Node(28);
 
-a.left = b;
-a.right = i;
+r.left = b;
+r.right = i;
 b.left = c;
 b.right = f;
 c.left = d;
@@ -39,4 +39,4 @@ k.left = l;
 k.right = n;
 l.right = m;
 
-module.exports = a;
+module.exports = {r, m, n};
