@@ -20,6 +20,8 @@ const getDepth = (node) => {
 };
 
 const lowestCommonAncestor = (a, b) => {
+  // time: O(longer depth in a and b)
+  // space: O(1)
   let aDepth = getDepth(a);
   let bDepth = getDepth(b);
   if (aDepth > bDepth) {
