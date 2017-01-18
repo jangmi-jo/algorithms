@@ -14,26 +14,17 @@ which means dfs
 const f = require('./tree-traversal-sample.js');
 
 const preOrder = (root) => {
-  // time, space: O(n) where n is the number of nodes
-  // how can we do better...?
+  // time: O(n) where n is the number of nodes
+  // space: O(1)
   let stack = [root];
-  let visited = {};
-  visited[root] = true;
-  visited[undefined] = true;
   while (stack.length) {
-    let c = stack[stack.length - 1];
-    if (visited[c.right] && visited[c.left]) {
-      let p = stack.pop();
-      // process the node.. I just logged
-      console.log(p.val);
-    }
+    let c = stack.pop();
+    console.log(c.val);
     if (c.right) {
       stack.push(c.right);
-      visited[c.right] = true;
     }
     if (c.left) {
       stack.push(c.left);
-      visited[c.left] = true;
     }
   }
 };
