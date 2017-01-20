@@ -24,4 +24,13 @@ d.right = e;
 g.right = i;
 i.left = h;
 
+a.parent = b;
+b.parent = f;
+c.parent = d;
+e.parent = d;
+d.parent = b;
+h.parent = i;
+i.parent = g;
+g.parent = f;
+
 module.exports = f;
