@@ -54,4 +54,6 @@ const reconstruct = (arr) => {
     return root;
 };
 
-console.log(reconstruct(['H', 'B', 'F', null, null, 'E', 'A', null, null, null, 'C', null, 'D', null, 'G', 'I', null, null, null]));
+let tree = reconstruct(['H', 'B', 'F', null, null, 'E', 'A', null, null, null, 'C', null, 'D', null, 'G', 'I', null, null, null]);
+
+module.exports = tree;
