@@ -8,8 +8,10 @@ get right node's left-most node
 go up until the node is not the right node
 3) return the node
 
-didn't build test case since it's too specific (with special assuming, like has parent) but pretty sure it will work
 */
+
+
+const f = require('./tree-traversal-sample.js');
 
 const findSuccessor = (node) => {
   // time: O(logn), space: O(1)
@@ -26,3 +28,6 @@ const findSuccessor = (node) => {
   }
   return node;
 };
+
+
+console.log(findSuccessor(f));
