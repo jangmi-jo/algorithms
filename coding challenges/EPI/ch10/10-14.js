@@ -4,6 +4,7 @@ form a linked list from the leaves of a binary tree
 use depth first algorithm and traverse the tree
 record when the node has no children
 
+here, I just made it as array but it's easy to build a linked list
 */
 
 const tree = require('./10-13.js');
