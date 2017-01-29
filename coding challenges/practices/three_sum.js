@@ -34,4 +34,4 @@ const threeSum = (arr, t) => {
   return res;
 };
 
-console.log(threeSum([-2, 0, 0, 2, 2], 0));
+console.log(threeSum([0, 0, 0, 0, 0, 0], 0));
