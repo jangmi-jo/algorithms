@@ -15,8 +15,7 @@ const mergingIntervals = (arr, t) => {
       res.push(t);
       t = undefined;
     }
-    if (!t || arr[i][0] > t[1] || arr[i][1] < t[0] ||
-        t[0] > arr[i][1] || t[1] < arr[i][0]) {
+    if (!t || arr[i][0] > t[1] || arr[i][1] < t[0]) {
       // didn't collide
       res.push(arr[i]);
     } else {
