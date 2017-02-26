@@ -37,4 +37,4 @@ k.right = n;
 l.right = m;
 o.right = p;
 
-module.exports = {root, k, i, m, p, j};
+module.exports = root;
