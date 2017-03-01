@@ -21,4 +21,20 @@ const matchedParens = (n) => {
   return res;
 };
 
-console.log(matchedParens(3));
+// console.log(matchedParens(3));
+
+const anotherway = (left, right = left, res = [], str = "") => {
+  // seems way better. No need to worry about duplicates
+  if (left === 0 && right === 0) {
+    res.push(str);
+  }
+  if (left < right) {
+    anotherway(left, right - 1, res, str + ")");
+  }
+  if (left > 0) {
+    anotherway(left - 1, right, res, str + "(");
+  }
+  return res;
+};
+
+console.log(anotherway(3));
