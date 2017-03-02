@@ -1,40 +1,47 @@
 /*
-generate strings of matched parens
-given a number, return all possible matched parens
+generate all subsets of size k
+given n and k, return all k size subsets from [1, 2, 3...n]
 
-the base case would be when the number is 0, return empty string
-in func, get the n-1 strings and add additional parens on them
-and make a new set with them
-I used Set to discard duplicated strings
+1, 1 => [1]
+2, 1 => [1], [2]
+3, 1 => [1], [2], [3]
 
-Seems like there's another way to solve it faster.
+2, 2 => [1, 2]
+3, 2 => [1, 2], [1, 3], [2, 3]
+4, 2 => [1, 2], [1, 3], [2, 3], [1, 4], [2, 4], [3, 4]
+
+3, 3 => [1, 2, 3]
+4, 3 => [1, 2, 3], [1, 2, 4], [1, 3, 4], [2, 3, 4]
+5, 3 => [1, 2, 3], [1, 2, 4], [1, 3, 4], [2, 3, 4], ...
+get [5, 2] and add 5 to all of them
+
+get length k ones without n
+get length k-1 ones without n and add n to those
+merge them
+base case: when it reaches either k === n or k === 1
+
 */
 
-const matchedParens = (n) => {
-  if (n === 0) {return [""];}
-  const res = new Set();
-  matchedParens(n-1).forEach((str) => {
-    res.add(`(${str})`);
-    res.add(`${str}()`);
-    res.add(`()${str}`);
+const allKSubsets = (n, k) => {
+  if (k === n) {
+    const res = [];
+    for (let i=1; i<k+1; i++) {
+      res.push(i);
+    }
+    return [res];
+  } else if (k === 1) {
+    const res = [];
+    for (let i=1; i<n+1; i++) {
+      res.push([i]);
+    }
+    return res;
+  }
+  const prev = allKSubsets(n-1, k);
+  const withoutN = allKSubsets(n-1, k-1);
+  withoutN.forEach((arr) => {
+    arr.push(n);
   });
-  return res;
+  return prev.concat(withoutN);
 };
 
-// console.log(matchedParens(3));
-
-const anotherway = (left, right = left, res = [], str = "") => {
-  // seems way better. No need to worry about duplicates
-  if (left === 0 && right === 0) {
-    res.push(str);
-  }
-  if (left < right) {
-    anotherway(left, right - 1, res, str + ")");
-  }
-  if (left > 0) {
-    anotherway(left - 1, right, res, str + "(");
-  }
-  return res;
-};
-
-console.log(anotherway(3));
+console.log(allKSubsets(5, 3));
